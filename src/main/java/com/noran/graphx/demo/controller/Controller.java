@@ -51,4 +51,11 @@ public class Controller {
                 .collectAsList();
     }
 
+    @GetMapping("/triplets")
+    List<TripletsDto> calculateTriplets(){
+        return createGraphService.createGraphFrame()
+                .triplets()
+                .as(Encoders.bean(TripletsDto.class))
+                .collectAsList();
+    }
 }
