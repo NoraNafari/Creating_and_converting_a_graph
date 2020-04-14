@@ -12,27 +12,28 @@ public class SampleUsersAndRelations {
 
     List<User> insertUsers(){
         List<User> users = new ArrayList<>();
-        users.add(new User(1L, "a"));
-        users.add(new User(2L, "b"));
-        users.add(new User(3L, "c"));
-        users.add(new User(4L, "d"));
-        users.add(new User(5L, "e"));
+        users.add(new User("1", "a"));
+        users.add(new User("2", "b"));
+        users.add(new User("3", "c"));
+        users.add(new User("4", "d"));
+        users.add(new User("5", "e"));
 
         return users;
     }
+
     List<Relation> insertRelations(){
         List<Relation> relations = new ArrayList<>();
-        relations.add(new Relation( "friend", "a", "b"));
-        relations.add(new Relation( "friend", "a", "c"));
-        relations.add(new Relation( "friend", "a", "d"));
-        relations.add(new Relation( "friend", "a", "b"));
-        relations.add(new Relation( "friend", "b", "d"));
-        relations.add(new Relation( "friend", "d", "e"));
-        relations.add(new Relation( "friend", "d", "a"));
-        relations.add(new Relation( "follower", "a", "e"));
-        relations.add(new Relation( "follower", "e", "d"));
-        relations.add(new Relation( "relative", "c", "b"));
-        relations.add(new Relation( "relative", "b", "d"));
+        relations.add(new Relation( "friend", "1", "2"));
+        relations.add(new Relation( "friend", "1", "3"));
+        relations.add(new Relation( "friend", "1", "4"));
+        relations.add(new Relation( "friend", "1", "5"));
+        relations.add(new Relation( "friend", "2", "4"));
+        relations.add(new Relation( "friend", "4", "5"));
+        relations.add(new Relation( "friend", "4", "1"));
+        relations.add(new Relation( "follower", "1", "5"));
+        relations.add(new Relation( "follower", "5", "4"));
+        relations.add(new Relation( "relative", "3", "2"));
+        relations.add(new Relation( "relative", "2", "4"));
 
         return relations;
     }
