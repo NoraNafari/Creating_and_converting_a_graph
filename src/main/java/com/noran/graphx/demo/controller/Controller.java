@@ -1,12 +1,11 @@
 package com.noran.graphx.demo.controller;
 
 import com.noran.graphx.demo.mapping.GraphToGraphDto;
-import com.noran.graphx.demo.model.dto.GraphDto;
-import com.noran.graphx.demo.model.dto.LandmarksDto;
-import com.noran.graphx.demo.model.dto.PageRankDto;
-import com.noran.graphx.demo.model.dto.ShortestPathDto;
+import com.noran.graphx.demo.model.dto.*;
 import com.noran.graphx.demo.service.CreateGraphService;
+import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Encoders;
+import org.apache.spark.sql.Row;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,4 +42,13 @@ public class Controller {
                 .as(Encoders.bean(ShortestPathDto.class))
                 .collectAsList();
     }
+
+    @GetMapping("/triangleCount")
+    List<TriangleCountDto> calculateTriangles(){
+        return createGraphService.createGraphFrame()
+                .triangleCount().run().select("count", "id")
+                .as(Encoders.bean(TriangleCountDto.class))
+                .collectAsList();
+    }
+
 }
